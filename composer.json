@@ -21,7 +21,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SnowIO\\DataLakeDataModel\\Test\\": "test/unit"
+            "SnowIO\\DataLakeDataModel\\Test\\": "tests/unit"
         }
     },
     "require-dev": {

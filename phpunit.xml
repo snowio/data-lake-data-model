@@ -1,0 +1,12 @@
+<phpunit bootstrap="./vendor/autoload.php">
+    <testsuites>
+        <testsuite name="datalake-data-model-tests">
+            <directory>./tests/unit</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory>src</directory>
+        </whitelist>
+    </filter>
+</phpunit>

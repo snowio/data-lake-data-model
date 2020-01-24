@@ -4,13 +4,11 @@ namespace SnowIO\DataLakeDataModel\Test\ACME\DataLake\Segments;
 use SnowIO\DataLakeDataModel\Segment;
 use SnowIO\DataLakeDataModel\Test\ACME\Product;
 
-class Stock extends Segment
+class ColorScheme extends Segment
 {
-    const NAME = "stock";
-
     public function getSegmentId(): string
     {
-        return self::NAME;
+        return "color_scheme_{$this->data['scheme_id']}";
     }
 
     public function getItemKey(): string
@@ -26,14 +24,18 @@ class Stock extends Segment
     public function onSave(array $json): array
     {
         return [
-            'stock' => $json
+            'schemes' => [
+                $json['scheme_id'] => $json
+            ],
         ];
     }
 
     public function onDelete(array $json): array
     {
         return [
-            'stock' => null
+            'schemes' => [
+                $json['scheme_id'] => null
+            ]
         ];
     }
 }
