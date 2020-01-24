@@ -5,7 +5,7 @@ before_install:
 cache:
   directories: $HOME/.composer/cache
 before_script:
-  - composer install --no-interaction --dev --working-dir=code
+  - composer install --no-interaction --dev
 script:
-  - php vendor/bin/phpunit --configuration=code/phpunit.xml --coverage-clover=coverage.xml
+  - php vendor/bin/phpunit --configuration=phpunit.xml --coverage-clover=coverage.xml
 after_success: bash <(curl -s https://codecov.io/bash)
