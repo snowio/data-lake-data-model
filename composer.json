@@ -1,0 +1,30 @@
+{
+    "name": "snowio/segment",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Meng Tian",
+            "email": "mt@amp.co"
+        }
+    ],
+    "repositories": [
+        {"type": "composer", "url": "https://repo.packagist.com/snowio/"},
+        {"packagist.org": false}
+    ],
+    "require": {
+        "php": ">=7"
+    },
+    "autoload": {
+        "psr-4": {
+            "SnowIO\\DataLakeDataModel\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SnowIO\\DataLakeDataModel\\Test\\": "test/unit"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    }
+}
