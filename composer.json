@@ -1,10 +1,9 @@
 {
-    "name": "snowio/segment",
-    "license": "proprietary",
+    "name": "snowio/datalake-data-model",
     "authors": [
         {
-            "name": "Meng Tian",
-            "email": "mt@amp.co"
+            "name": "Alexander Wanyoike",
+            "email": "amw@amp.co"
         }
     ],
     "repositories": [
