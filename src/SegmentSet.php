@@ -1,8 +1,6 @@
 <?php
 namespace SnowIO\DataLakeDataModel;
 
-use Traversable;
-
 class SegmentSet implements \IteratorAggregate
 {
     /**
