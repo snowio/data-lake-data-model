@@ -16,6 +16,13 @@ abstract class Command
         return $this->timestamp ? [ '@timestamp' => $this->timestamp ] : [];
     }
 
+    public function withTimestamp(int $timestamp): self
+    {
+        $result = clone $this;
+        $result->timestamp = $timestamp;
+        return $result;
+    }
+
     /** @var Segment */
     protected $segment;
     /** @var Item */
