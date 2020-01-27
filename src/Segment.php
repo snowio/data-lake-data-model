@@ -16,16 +16,16 @@ abstract class Segment
 
     public abstract function getItemKey(): string;
 
-    public abstract function onSave(array $json): array;
+    public abstract function onSave(): array;
 
-    public abstract function onDelete(array $json): array;
+    public abstract function onDelete(): array;
 
     public static function fromJson(array $json): self
     {
         $result = new static;
-        $result->saveData = $result->onSave($json);
-        $result->deleteData = $result->onDelete($json);
         $result->data = $json;
+        $result->saveData = $result->onSave();
+        $result->deleteData = $result->onDelete();
         return $result;
     }
 

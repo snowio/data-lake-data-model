@@ -23,12 +23,12 @@ class Price extends Segment
         return $this->data['id'];
     }
 
-    public function onSave(array $json): array
+    public function onSave(): array
     {
-        return [ 'price' => $json['price'] ];
+        return [ 'price' => $this->data['price'] ];
     }
 
-    public function onDelete(array $json): array
+    public function onDelete(): array
     {
         return [ 'price' => null ];
     }

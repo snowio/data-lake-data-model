@@ -23,14 +23,14 @@ class Stock extends Segment
         return $this->data['sku'];
     }
 
-    public function onSave(array $json): array
+    public function onSave(): array
     {
         return [
-            'stock' => $json
+            'stock' => $this->data
         ];
     }
 
-    public function onDelete(array $json): array
+    public function onDelete(): array
     {
         return [
             'stock' => null

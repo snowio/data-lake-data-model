@@ -1,5 +1,8 @@
 # datalake-data-model
 
+[![Build Status](https://travis-ci.com/snowio/data-lake-data-model.svg?token=U689oSo3xzjG6cGhzQEN&branch=master)](https://travis-ci.com/snowio/data-lake-data-model)
+
+
 Data model responsible for Data Lake
 
 

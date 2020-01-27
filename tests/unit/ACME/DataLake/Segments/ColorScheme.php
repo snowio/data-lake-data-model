@@ -21,20 +21,20 @@ class ColorScheme extends Segment
         return $this->data['sku'];
     }
 
-    public function onSave(array $json): array
+    public function onSave(): array
     {
         return [
             'schemes' => [
-                $json['scheme_id'] => $json
+                $this->data['scheme_id'] => $this->data
             ],
         ];
     }
 
-    public function onDelete(array $json): array
+    public function onDelete(): array
     {
         return [
             'schemes' => [
-                $json['scheme_id'] => null
+                $this->data['scheme_id'] => null
             ]
         ];
     }
