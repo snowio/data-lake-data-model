@@ -5,7 +5,7 @@ use SnowIO\DataLakeDataModel\Item;
 
 class ItemSavedEvent
 {
-    public function fromJson(array $eventJson): self
+    public static function fromJson(array $eventJson): self
     {
         return new self(
             Item::fromJson($eventJson['new']),
