@@ -40,6 +40,11 @@ abstract class Segment
         return array_merge($data, ["@segment" => $this->getSegmentId()], [$this->getItemKey() => $this->getItemId()]);
     }
 
+    public function getRawData(): array
+    {
+        return $this->data;
+    }
+
     private $saveData = [];
     private $deleteData = [];
 
