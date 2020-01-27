@@ -1,5 +1,5 @@
 <?php
-namespace SnowIO\DatalakeDataModel\Events;
+namespace SnowIO\DataLakeDataModel\Events;
 
 use SnowIO\DataLakeDataModel\Item;
 
