@@ -40,7 +40,7 @@ class ItemTest extends TestCase
                 'gbp' => "30",
                 'usd' => "40"
             ]
-        ]], $commandJson);
+        ]], iterator_to_array($commandJson));
 
         $commandJson = Product::create()
             ->withSegment(Stock::fromJson(SegmentTest::getStockJson()))
@@ -56,7 +56,7 @@ class ItemTest extends TestCase
                 'recQty' => "50"
             ],
             '@timestamp' => 1
-        ]], $commandJson);
+        ]], iterator_to_array($commandJson));
 
         $commandJson = Product::create()
             ->withSegment(ColorScheme::fromJson(SegmentTest::getColorSchemeJson()))
@@ -67,6 +67,6 @@ class ItemTest extends TestCase
             '@segment' => "color_scheme_test_scheme1",
             'sku' => 'test1',
             'schemes' => [ 'test_scheme1' => SegmentTest::getColorSchemeJson() ]
-        ]], $commandJson);
+        ]], iterator_to_array($commandJson));
     }
 }

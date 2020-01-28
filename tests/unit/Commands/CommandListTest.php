@@ -41,6 +41,6 @@ class CommandListTest extends TestCase
                 'price' => SegmentTest::getPriceJson()['price'],
                 '@timestamp' => 300
             ]
-        ], $commandList->toJson());
+        ], iterator_to_array($commandList->toJson()));
     }
 }

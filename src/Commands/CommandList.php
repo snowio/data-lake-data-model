@@ -30,11 +30,14 @@ class CommandList implements \IteratorAggregate
         return empty($this->commands);
     }
 
-    public function toJson()
+    public function toJson(): \Iterator
     {
-        return array_map(function (Command $command) {
+        $commands = array_map(function (Command $command) {
             return $command->toJson();
         }, $this->commands);
+        foreach ($commands as $command) {
+            yield $command;
+        }
     }
 
     private $commands;
