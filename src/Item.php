@@ -2,6 +2,8 @@
 
 namespace SnowIO\DataLakeDataModel;
 
+use SnowIO\DataLakeDataModel\Commands\Command;
+use SnowIO\DataLakeDataModel\Commands\CommandList;
 use SnowIO\DataLakeDataModel\Commands\DeleteSegmentCommand;
 use SnowIO\DataLakeDataModel\Commands\SaveSegmentCommand;
 
@@ -27,18 +29,18 @@ abstract class Item
         return $this->segments->get($identifier);
     }
 
-    public function getSaveCommands(int $timestamp = null): \Iterator
+    public function getSaveCommands(int $timestamp = null): CommandList
     {
-        foreach ($this->segments as $segment) {
-            yield SaveSegmentCommand::of($segment, $timestamp);
-        }
+        return CommandList::of(array_map(function (Segment $segment) use ($timestamp) {
+            return SaveSegmentCommand::of($segment, $timestamp);
+        }, iterator_to_array($this->segments)));
     }
 
-    public function getDeleteCommands(int $timestamp = 0): \Iterator
+    public function getDeleteCommands(int $timestamp = 0): CommandList
     {
-        foreach ($this->segments as $segment) {
-            yield DeleteSegmentCommand::of($segment, $timestamp);
-        }
+        return CommandList::of(array_map(function (Segment $segment) use ($timestamp) {
+            return DeleteSegmentCommand::of($segment, $timestamp);
+        }, iterator_to_array($this->segments)));
     }
 
     public static function create(): self

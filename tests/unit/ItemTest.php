@@ -3,7 +3,6 @@
 namespace SnowIO\DataLakeDataModel\Test;
 
 use PHPUnit\Framework\TestCase;
-use SnowIO\DataLakeDataModel\Commands\Command;
 use SnowIO\DataLakeDataModel\Test\ACME\DataLake\Segments\ColorScheme;
 use SnowIO\DataLakeDataModel\Test\ACME\DataLake\Segments\Price;
 use SnowIO\DataLakeDataModel\Test\ACME\DataLake\Segments\Stock;
@@ -29,9 +28,10 @@ class ItemTest extends TestCase
      */
     public function shouldConstructItemSaveCommands()
     {
-        $commandJson = $this->toJsonWrap(Product::create()
+        $commandJson = Product::create()
             ->withSegment(Price::fromJson(SegmentTest::getPriceJson()))
-            ->getSaveCommands());
+            ->getSaveCommands()
+            ->toJson();
 
         self::assertEquals([[
             '@segment' => "price",
@@ -42,9 +42,10 @@ class ItemTest extends TestCase
             ]
         ]], $commandJson);
 
-        $commandJson = $this->toJsonWrap(Product::create()
+        $commandJson = Product::create()
             ->withSegment(Stock::fromJson(SegmentTest::getStockJson()))
-            ->getSaveCommands(1));
+            ->getSaveCommands(1)
+            ->toJson();
 
         self::assertEquals([[
             '@segment' => "stock",
@@ -57,21 +58,15 @@ class ItemTest extends TestCase
             '@timestamp' => 1
         ]], $commandJson);
 
-        $commandJson = $this->toJsonWrap(Product::create()
+        $commandJson = Product::create()
             ->withSegment(ColorScheme::fromJson(SegmentTest::getColorSchemeJson()))
-            ->getSaveCommands());
+            ->getSaveCommands()
+            ->toJson();
 
         self::assertEquals([[
             '@segment' => "color_scheme_test_scheme1",
             'sku' => 'test1',
             'schemes' => [ 'test_scheme1' => SegmentTest::getColorSchemeJson() ]
         ]], $commandJson);
-    }
-
-    private function toJsonWrap(\Iterator $iterator)
-    {
-        return array_map(function (Command $command) {
-            return $command->toJson();
-        }, iterator_to_array($iterator));
     }
 }
