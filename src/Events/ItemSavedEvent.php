@@ -6,10 +6,27 @@ use SnowIO\DataLakeDataModel\Item;
 abstract class ItemSavedEvent
 {
     public abstract static function fromJson(array $eventJson);
-    public abstract function getCurrent(): ?Item;
-    public abstract function getPrevious(): ?Item;
-    public abstract function hasPrevious(): bool;
-    public abstract function getTimestamp(): bool;
+
+    /**
+     * @return Item
+     */
+    public function getCurrent()
+    {
+        return $this->current;
+    }
+
+    /**
+     * @return Item
+     */
+    public function getPrevious()
+    {
+        return $this->previous;
+    }
+
+    public function hasPrevious(): bool
+    {
+        return $this->previous !== null;
+    }
 
     /** @var Item */
     private $previous;
