@@ -33,7 +33,12 @@ abstract class ItemSavedEvent
     /** @var Item */
     private $current;
 
-    private function __construct(Item $current, Item $previous)
+    /**
+     * ItemSavedEvent constructor.
+     * @param Item $current
+     * @param Item $previous
+     */
+    private function __construct($current, $previous)
     {
         $this->current = $current;
         $this->previous = $previous;
