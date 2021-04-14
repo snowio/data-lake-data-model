@@ -3,6 +3,7 @@
 namespace SnowIO\DataLakeDataModel\Test;
 
 use PHPUnit\Framework\TestCase;
+use SnowIO\DataLakeDataModel\Segment;
 use SnowIO\DataLakeDataModel\SegmentSet;
 use SnowIO\DataLakeDataModel\Test\ACME\DataLake\Segments\Price;
 use SnowIO\DataLakeDataModel\Test\ACME\DataLake\Segments\Stock;
@@ -68,4 +69,28 @@ class SegmentSetTest extends TestCase
         self::assertFalse($otherSegments->equals($segments));
     }
 
+    public function testFiltration()
+    {
+        $segments = SegmentSet::of([
+            Price::fromJson(SegmentTest::getPriceJson()),
+            Stock::fromJson(SegmentTest::getStockJson())
+        ]);
+
+        $filteredSegments = $segments->filter(function (Segment $segment) {
+           return $segment->getSegmentId()  === Price::NAME;
+        });
+
+        self::assertEquals(1, $filteredSegments->size());
+    }
+
+    public function testFirst()
+    {
+        $segments = SegmentSet::of([
+            $price = Price::fromJson(SegmentTest::getPriceJson()),
+            Stock::fromJson(SegmentTest::getStockJson())
+        ]);
+
+        $actual = $segments->first();
+        self::assertTrue($actual->equals($price));
+    }
 }

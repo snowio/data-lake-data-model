@@ -85,6 +85,19 @@ class SegmentSet implements \IteratorAggregate
         }
     }
 
+    public function filter(callable $predicate): SegmentSet
+    {
+        return self::of(array_filter($this->segments, $predicate));
+    }
+
+    public function first(): ?Segment
+    {
+        if ($this->size() === 0) {
+            return null;
+        }
+        return reset($this->segments);
+    }
+
     public function toJson(?string $action): array
     {
         $itemData = [];
