@@ -93,4 +93,12 @@ class SegmentSetTest extends TestCase
         $actual = $segments->first();
         self::assertTrue($actual->equals($price));
     }
+
+    public function testFirstWithEmptySegmentSet()
+    {
+        $segments = SegmentSet::of([]);
+
+        $actual = $segments->first();
+        self::assertNull($actual);
+    }
 }
